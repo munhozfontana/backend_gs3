@@ -1,18 +1,35 @@
 package com.gs3tenlogia.backend.backend_gs3.resources;
 
+import java.net.URI;
+
+import javax.validation.Valid;
+
+import com.gs3tenlogia.backend.backend_gs3.domain.Usuario;
+import com.gs3tenlogia.backend.backend_gs3.dto.cadastro.CadastroNewDTO;
+import com.gs3tenlogia.backend.backend_gs3.service.CadastroService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/cadastro-resource")
 public class CadastroResource {
-    
-    @RequestMapping( method = RequestMethod.GET)
-	public ResponseEntity<String> find() {
-		return ResponseEntity.ok().body("Teste End Point");
-	}
 
+    @Autowired
+	private CadastroService service;
+    
+    @RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody CadastroNewDTO objDto) {
+		Usuario obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
 
 }
