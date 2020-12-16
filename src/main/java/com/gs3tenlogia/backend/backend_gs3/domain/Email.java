@@ -1,7 +1,7 @@
 package com.gs3tenlogia.backend.backend_gs3.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,42 +10,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "EMAIL")
 public class Email implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String telefone;
+  private static final long serialVersionUID = 1L;
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
+  private String telefone;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  @ManyToOne
+  @JsonIgnore
+  @JoinColumn(name = "usuario_id")
+  private Usuario usuario;
 
-    public String getTelefone() {
-        return telefone;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public Email(Integer id, String telefone) {
-        this.id = id;
-        this.telefone = telefone;
-    }
+  public String getTelefone() {
+    return telefone;
+  }
 
+  public void setTelefone(String telefone) {
+    this.telefone = telefone;
+  }
+
+  public Email(Integer id, String telefone) {
+    this.id = id;
+    this.telefone = telefone;
+  }
 }

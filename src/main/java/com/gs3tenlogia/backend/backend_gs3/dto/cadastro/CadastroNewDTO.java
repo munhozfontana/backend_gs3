@@ -1,65 +1,77 @@
 package com.gs3tenlogia.backend.backend_gs3.dto.cadastro;
 
+import com.gs3tenlogia.backend.backend_gs3.domain.Endereco;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.constraints.*;
-
-import com.gs3tenlogia.backend.backend_gs3.domain.Endereco;
-
 import org.hibernate.validator.constraints.Length;
 
 public class CadastroNewDTO {
 
-    @NotBlank(message = "Preenchimento Obrigatório")
-    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracters")
-    private String nome;
+  @NotBlank(message = "Preenchimento Obrigatório")
+  @Length(
+    min = 5,
+    max = 120,
+    message = "O tamanho deve ser entre 5 e 120 caracters"
+  )
+  private String nome;
 
-    @NotBlank(message = "Preenchimento Obrigatório")
-    private String cpf;
+  @NotBlank(message = "Preenchimento Obrigatório")
+  private String cpf;
 
-    private List<String> telefone = new ArrayList<>();
-    private List<String> email = new ArrayList<>();
+  private List<String> telefone = new ArrayList<>();
+  private List<String> email = new ArrayList<>();
 
-    private Endereco endereco;
+  private Endereco endereco;
 
-    public String getNome() {
-        return nome;
-    }
+  @NotEmpty(message = "Preenchimento obrigatório")
+  private String senha;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public String getCpf() {
-        return cpf;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+  public String getCpf() {
+    return cpf;
+  }
 
-    public List<String> getTelefone() {
-        return telefone;
-    }
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
 
-    public void setTelefone(List<String> telefone) {
-        this.telefone = telefone;
-    }
+  public List<String> getTelefone() {
+    return telefone;
+  }
 
-    public List<String> getEmail() {
-        return email;
-    }
+  public void setTelefone(List<String> telefone) {
+    this.telefone = telefone;
+  }
 
-    public void setEmail(List<String> email) {
-        this.email = email;
-    }
+  public List<String> getEmail() {
+    return email;
+  }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+  public void setEmail(List<String> email) {
+    this.email = email;
+  }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+  public Endereco getEndereco() {
+    return endereco;
+  }
+
+  public void setEndereco(Endereco endereco) {
+    this.endereco = endereco;
+  }
+
+  public String getSenha() {
+    return senha;
+  }
+
+  public void setSenha(String senha) {
+    this.senha = senha;
+  }
 }
