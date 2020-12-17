@@ -55,7 +55,7 @@ public class BackendGs3Application implements CommandLineRunner {
       endereco,
       pe.encode("123456")
     );
-    admin.getPerfis().add(Perfil.ADMIN);
+    admin.addPerfil(Perfil.ADMIN);
 
     Usuario comum = new Usuario(
       null,
@@ -72,7 +72,7 @@ public class BackendGs3Application implements CommandLineRunner {
       endereco,
       pe.encode("123456")
     );
-    comum.getPerfis().add(Perfil.CLIENTE);
+    comum.addPerfil(Perfil.CLIENTE);
 
     usuarioRepository.saveAll(Arrays.asList(comum, admin));
   }

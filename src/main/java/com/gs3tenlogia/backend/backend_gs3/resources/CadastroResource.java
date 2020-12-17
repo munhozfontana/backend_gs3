@@ -21,8 +21,8 @@ public class CadastroResource {
   @Autowired
   private CadastroService service;
 
-  @RequestMapping(method = RequestMethod.POST)
   @PreAuthorize("hasAnyRole('ADMIN')")
+  @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<Void> insert(
     @Valid @RequestBody CadastroNewDTO objDto
   ) {
